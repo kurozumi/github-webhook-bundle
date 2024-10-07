@@ -1,0 +1,32 @@
+{
+    "name": "kurozumi/github-webhook-bundle",
+    "type": "symfony-bundle",
+    "require": {
+        "php": ">=8.1",
+        "symfony/webhook": "^5.4|^6.0|^7.0",
+        "symfony/remote-event": "^5.4|^6.0|^7.0",
+        "symfony/dependency-injection": "^5.4|^6.0|^7.0",
+        "symfony/config": "^5.4|^6.0|^7.0"
+    },
+    "require-dev": {
+        "symfony/test-pack": "^1.1",
+        "friendsofphp/php-cs-fixer": "^3.64"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Kurozumi\\GithubWebhookBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Kurozumi\\GithubWebhookBundle\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "kurozumi",
+            "email": "info@a-zumi.net"
+        }
+    ]
+}
