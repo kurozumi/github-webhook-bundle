@@ -1,8 +1,12 @@
-GitHub Webhook Bundle
-===============
+# GitHub Webhook Bundle
 
-Webhook
--------
+## Installation
+
+```shell
+composer require kurozumi/github-webhook-bundle
+```
+
+## Configuration
 
 Create a route:
 
@@ -21,4 +25,28 @@ The configuration:
 # .env.local
 
 WEBHOOK_GITHUB_SECRET=1z9Y48dbgqxZi...
+```
+
+## How to use
+
+```php
+use Symfony\Component\EventDispatcher\EventSubscriberInterface
+use Symfony\Component\RemoteEvent\RemoteEvent;
+
+class GithubWebhookListener implements EventSubscriberInterface
+{
+    public static function getSubscribedEvents(): array
+    {
+        return [
+            'pull_request' => 'onPullRequest',
+        ]
+    }
+    
+    public function onPullRequest(RemoteEvent $event): void
+    {
+        $payload = $event->getPayload();
+        
+        // do something
+    }
+}
 ```
