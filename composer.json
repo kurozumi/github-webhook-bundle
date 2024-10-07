@@ -28,5 +28,7 @@
             "name": "kurozumi",
             "email": "info@a-zumi.net"
         }
-    ]
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
