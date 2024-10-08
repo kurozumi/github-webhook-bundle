@@ -10,7 +10,7 @@ use Symfony\Component\RemoteEvent\Consumer\ConsumerInterface;
 use Symfony\Component\RemoteEvent\RemoteEvent;
 
 #[AsRemoteEventConsumer(name: 'github')]
-final readonly class GithubWebhookConsumer implements ConsumerInterface
+final class GithubConsumer implements ConsumerInterface
 {
     public function __construct(
         private EventDispatcherInterface $eventDispatcher,
