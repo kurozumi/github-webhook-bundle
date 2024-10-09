@@ -5,8 +5,15 @@
 ```shell
 composer require kurozumi/github-webhook-bundle
 ```
+The configuration:
 
-## Configuration
+```env
+# .env
+
+WEBHOOK_GITHUB_SECRET=1z9Y48dbgqxZi...
+```
+
+## Webhook
 
 Create a route:
 
@@ -19,12 +26,28 @@ framework:
               secret: '%env(WEBHOOK_GITHUB_SECRET)%'
 ```
 
-The configuration:
+And a consume:
 
-```env
-# .env.local
+```php
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\RemoteEvent\Attribute\AsRemoteEventConsumer;
+use Symfony\Component\RemoteEvent\Consumer\ConsumerInterface;
+use Symfony\Component\RemoteEvent\RemoteEvent;
 
-WEBHOOK_GITHUB_SECRET=1z9Y48dbgqxZi...
+#[AsRemoteEventConsumer(name: 'github')]
+final class GithubConsumer implements ConsumerInterface
+{
+    public function __construct(
+        private EventDispatcherInterface $eventDispatcher,
+    ) {
+    }
+
+    public function consume(RemoteEvent $event): void
+    {
+        $this->eventDispatcher->dispatch($event, $event->getName());
+    }
+}
+
 ```
 
 ## How to use
